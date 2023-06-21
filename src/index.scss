@@ -31,12 +31,14 @@ html {
 
 .side-nav {
   background-color: orangered;
-  flex-grow: 1;
+  // flex-grow: 1;
+  width: 25%;
 }
 
 .task-container {
   background-color: greenyellow;
-  flex-grow: 4;
+  // flex-grow: 4;
+  width: 75%;
 }
 
 .task {
