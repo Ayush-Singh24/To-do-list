@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 120rem;
+  background-color: grey;
+  margin: 8rem auto;
+  padding: 2rem 0;
+}
+
+.content {
+  display: flex;
+  font-size: 3rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: aqua;
+}
+
+.side-nav {
+  background-color: orangered;
+  flex-grow: 1;
+}
+
+.task-container {
+  background-color: greenyellow;
+  flex-grow: 4;
+}
+
+.task {
+  display: flex;
+  gap: 4rem;
+  &__priority {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-text {
+      font-size: 1rem;
+    }
+  }
+}
