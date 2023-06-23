@@ -1,6 +1,12 @@
-import { Priority } from "../utils/constants";
+import { Options, Priority, Status } from "../utils/constants";
 
-export default function Tasks({ tasks, setTasks }) {
+export default function Tasks({
+  tasks,
+  setTasks,
+  handleDelete,
+  option,
+  handleStatus,
+}) {
   const priorities = [
     { value: Priority.NoPriority, text: "No Priority" },
     { value: Priority.High, text: "High" },
@@ -12,8 +18,22 @@ export default function Tasks({ tasks, setTasks }) {
     <main className="task-container">
       {tasks &&
         tasks.map((task) => {
-          return (
-            <div className="task">
+          return option === Options.All ||
+            (option === Options.High &&
+              task.priority === Priority.High &&
+              task.status === Status.Active) ||
+            (option === Options.Medium &&
+              task.priority === Priority.Medium &&
+              task.status === Status.Active) ||
+            (option === Options.Low &&
+              task.priority === Priority.Low &&
+              task.status === Status.Active) ||
+            (option === Options.No &&
+              task.priority === Priority.NoPriority &&
+              task.status === Status.Active) ||
+            (option === Options.Completed &&
+              task.status === Status.Completed) ? (
+            <div className="task" key={task.id}>
               <span className="task__text">{task.text}</span>
               <form className="task__priority">
                 <label htmlFor="priority" className="task__priority-text">
@@ -33,11 +53,45 @@ export default function Tasks({ tasks, setTasks }) {
                   }}
                 >
                   {priorities.map(({ value, text }) => {
-                    return <option value={value}>{text}</option>;
+                    return (
+                      <option key={value} value={value}>
+                        {text}
+                      </option>
+                    );
                   })}
                 </select>
               </form>
+              <label htmlFor={`check-${task.id}`} className="task__checkbox">
+                <img
+                  src={
+                    task.status === Status.Completed
+                      ? "/assets/checked-icon.svg"
+                      : "/assets/not-checked-icon.svg"
+                  }
+                  alt="checkbox"
+                  className="task__checkbox-img"
+                />
+              </label>
+              <input
+                type="checkbox"
+                name={`check-${task.id}`}
+                id={`check-${task.id}`}
+                checked={task.status === Status.Completed ? true : false}
+                onChange={(changeEvent) => handleStatus(changeEvent, task.id)}
+              />
+              <button
+                className="task__delete"
+                onClick={() => handleDelete(task.id)}
+              >
+                <img
+                  src="/assets/delete-icon.svg"
+                  alt="delete"
+                  className="task__delete-img"
+                />
+              </button>
             </div>
+          ) : (
+            <></>
           );
         })}
     </main>

@@ -2,12 +2,13 @@ import Header from "./components/Header";
 import SideNav from "./components/SideNav";
 import Tasks from "./components/Tasks";
 import { useEffect, useState } from "react";
-import { Priority, Status } from "./utils/constants";
+import { Options, Priority, Status } from "./utils/constants";
 import { nanoid } from "nanoid";
 
 function App() {
   const [tasks, setTasks] = useState(null);
   const [inputValue, setInputValue] = useState("");
+  const [option, setOption] = useState(Options.All);
 
   const addTask = (event) => {
     event.preventDefault();
@@ -34,6 +35,26 @@ function App() {
     setInputValue("");
   };
 
+  const handleDelete = (id) => {
+    const arr = tasks.filter((task) => {
+      return id !== task.id;
+    });
+    setTasks(arr);
+  };
+
+  const changeOption = (option) => {
+    setOption(option);
+  };
+
+  const handleStatus = (changeEvent, id) => {
+    const arr = [...tasks];
+    const task = arr.find((element) => {
+      return id === element.id;
+    });
+    task.status = changeEvent.target.checked ? Status.Completed : Status.Active;
+    setTasks(arr);
+  };
+
   useEffect(() => {
     if (tasks) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -47,11 +68,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(inputValue);
-    console.log(tasks);
-  }, [inputValue, tasks]);
-
   return (
     <div className="container">
       <Header
@@ -60,9 +76,15 @@ function App() {
         setInputValue={setInputValue}
       />
       <div className="content">
-        <SideNav />
+        <SideNav changeOption={changeOption} />
 
-        <Tasks tasks={tasks} setTasks={setTasks} />
+        <Tasks
+          tasks={tasks}
+          setTasks={setTasks}
+          handleDelete={handleDelete}
+          option={option}
+          handleStatus={handleStatus}
+        />
       </div>
     </div>
   );

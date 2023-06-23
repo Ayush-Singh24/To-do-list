@@ -11,11 +11,17 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background-image: linear-gradient(to right, #d64c7f, #ee4758 50%);
+}
+
 .container {
   max-width: 120rem;
+  height: 46rem;
   background-color: grey;
   margin: 8rem auto;
-  padding: 2rem 0;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .content {
@@ -26,30 +32,209 @@ html {
 .header {
   display: flex;
   justify-content: center;
-  background-color: aqua;
+  background-color: #fff;
+  padding: 2rem 2rem;
+  border-bottom: 1px solid black;
+}
+
+.add-task {
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  position: relative;
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    // margin-right: -4rem;
+    transition: width 0.5s;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+    }
+  }
+
+  &__input:focus + &__button {
+    opacity: 1;
+    transform: rotate(0deg);
+    z-index: 10;
+    right: 2rem;
+  }
+
+  &__button {
+    border: none;
+    display: flex;
+    z-index: -1;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.5s;
+    transform: rotate(-120deg);
+    cursor: pointer;
+    // visibility: hidden;
+    position: absolute;
+    right: 4rem;
+  }
+
+  &__img {
+    height: 3rem;
+    object-fit: contain;
+  }
 }
 
 .side-nav {
-  background-color: orangered;
+  background-color: #000000b4;
+  color: #fff;
+  font-size: 2.5rem;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   // flex-grow: 1;
   width: 25%;
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    padding: 1rem;
+    cursor: pointer;
+
+    & div {
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      & img {
+        height: 1.8rem;
+        filter: invert(0) !important;
+      }
+    }
+  }
+
+  & div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 4px;
+    width: 3px;
+    background-color: #d64c7f;
+    transform: scaleY(0);
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+      background-color 0.1s;
+  }
+
+  & div:hover::before {
+    transform: scaleY(1);
+    width: 100%;
+  }
+
+  &__type {
+    z-index: 10;
+  }
+
+  &__img {
+    height: 2.5rem;
+    filter: invert(1);
+  }
 }
 
 .task-container {
-  background-color: greenyellow;
+  background-color: #fff;
   // flex-grow: 4;
   width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }
 
 .task {
   display: flex;
   gap: 4rem;
+  background-color: #eae9e9;
+  padding: 1.5rem;
+  align-items: center;
+  width: 100%;
+
+  & input {
+    display: none;
+  }
+
+  &__text {
+    font-size: 2rem;
+    width: 60%;
+  }
+
   &__priority {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: auto;
     &-text {
       font-size: 1rem;
+      display: none;
+    }
+  }
+
+  &__delete {
+    height: 3rem;
+    width: 3rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.5s;
+
+    &:hover {
+      background-color: #d64c7f;
+    }
+    &:hover &-img {
+      filter: invert(1);
+    }
+
+    &-img {
+      height: 2rem;
+    }
+  }
+
+  &__checkbox {
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-top: 0.2rem;
+    transition: all 0.5s;
+
+    &:hover {
+      background-color: #d64c7f;
+    }
+
+    &:hover &-img {
+      filter: invert(1);
+    }
+    &-img {
+      // margin-top: 0.75rem;
+      height: 2.25rem;
     }
   }
 }

@@ -15,7 +15,11 @@ export default function Header({ addTask, inputValue, setInputValue }) {
           }}
         />
         <button type="submit" className="add-task__button">
-          Add
+          <img
+            src="/assets/add-icon.svg"
+            alt="add-icon"
+            className="add-task__img"
+          />
         </button>
       </form>
     </header>
