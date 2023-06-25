@@ -77,6 +77,7 @@ export default function Tasks({
                 name={`check-${task.id}`}
                 id={`check-${task.id}`}
                 checked={task.status === Status.Completed ? true : false}
+                className="task__checkbox-input"
                 onChange={(changeEvent) => handleStatus(changeEvent, task.id)}
               />
               <button

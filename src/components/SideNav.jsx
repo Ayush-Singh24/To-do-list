@@ -1,9 +1,9 @@
 import { Options } from "../utils/constants";
 
-export default function SideNav({ changeOption }) {
+export default function SideNav({ changeOption, option }) {
   return (
     <nav className="side-nav">
-      <div>
+      <div className={option === Options.All ? "active" : ""}>
         <img
           src="/assets/all-task-icon.svg"
           alt="all-task"
@@ -13,7 +13,7 @@ export default function SideNav({ changeOption }) {
           All tasks
         </p>
       </div>
-      <div>
+      <div className={option === Options.High ? "active" : ""}>
         <img
           src="/assets/high-priority-icon.svg"
           alt="high priority"
@@ -26,7 +26,7 @@ export default function SideNav({ changeOption }) {
           High Priority
         </p>
       </div>
-      <div>
+      <div className={option === Options.Medium ? "active" : ""}>
         <img
           src="/assets/medium-priority-icon.svg"
           alt="medium priority"
@@ -39,7 +39,7 @@ export default function SideNav({ changeOption }) {
           Medium Priority
         </p>
       </div>
-      <div>
+      <div className={option === Options.Low ? "active" : ""}>
         <div>
           <img
             src="/assets/low-priority-icon.svg"
@@ -51,7 +51,7 @@ export default function SideNav({ changeOption }) {
           Low Priority
         </p>
       </div>
-      <div>
+      <div className={option === Options.No ? "active" : ""}>
         <div>
           <img
             src="/assets/no-priority-icon.svg"
@@ -63,7 +63,7 @@ export default function SideNav({ changeOption }) {
           No Priority
         </p>
       </div>
-      <div>
+      <div className={option === Options.Completed ? "active" : ""}>
         <img
           src="/assets/completed-icon.svg"
           alt="completed"

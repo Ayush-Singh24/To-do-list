@@ -13,12 +13,12 @@ html {
 
 body {
   background-image: linear-gradient(to right, #d64c7f, #ee4758 50%);
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
   max-width: 120rem;
-  height: 46rem;
-  background-color: grey;
+  // background-color: grey;
   margin: 8rem auto;
   overflow: hidden;
   border-radius: 5px;
@@ -27,6 +27,7 @@ body {
 .content {
   display: flex;
   font-size: 3rem;
+  height: 40rem;
 }
 
 .header {
@@ -65,7 +66,7 @@ body {
     opacity: 1;
     transform: rotate(0deg);
     z-index: 10;
-    right: 2rem;
+    right: -4rem;
   }
 
   &__button {
@@ -75,13 +76,14 @@ body {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+    background-color: transparent;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 0.5s 0.2s;
     transform: rotate(-120deg);
     cursor: pointer;
     // visibility: hidden;
     position: absolute;
-    right: 4rem;
+    right: -1rem;
   }
 
   &__img {
@@ -93,7 +95,7 @@ body {
 .side-nav {
   background-color: #000000b4;
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 2rem;
   padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
@@ -153,22 +155,41 @@ body {
 }
 
 .task-container {
-  background-color: #fff;
+  background-color: #edebeb;
   // flex-grow: 4;
   width: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: #000;
+  }
 }
 
 .task {
   display: flex;
   gap: 4rem;
-  background-color: #eae9e9;
+  background-color: transparent;
   padding: 1.5rem;
   align-items: center;
   width: 100%;
+  transition: all 0.5s;
+
+  &:hover {
+    background-color: #c6bfc167;
+  }
 
   & input {
     display: none;
@@ -177,6 +198,9 @@ body {
   &__text {
     font-size: 2rem;
     width: 60%;
+    &:has(~ .task__checkbox-input:checked) {
+      text-decoration: line-through;
+    }
   }
 
   &__priority {
@@ -237,4 +261,9 @@ body {
       height: 2.25rem;
     }
   }
+}
+
+.active {
+  background-color: #d64c7f;
+  border-radius: 4px;
 }

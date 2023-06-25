@@ -76,7 +76,7 @@ function App() {
         setInputValue={setInputValue}
       />
       <div className="content">
-        <SideNav changeOption={changeOption} />
+        <SideNav changeOption={changeOption} option={option} />
 
         <Tasks
           tasks={tasks}
