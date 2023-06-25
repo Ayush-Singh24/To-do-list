@@ -11,7 +11,7 @@ export default function Header({ addTask, inputValue, setInputValue }) {
           placeholder="Add new task"
           value={inputValue}
           onChange={(changeEvent) => {
-            setInputValue(changeEvent.target.value);
+            setInputValue(changeEvent.target.value.trimStart());
           }}
         />
         <button type="submit" className="add-task__button">
