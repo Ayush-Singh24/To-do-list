@@ -35,10 +35,7 @@ export default function Tasks({
               task.status === Status.Completed) ? (
             <div className="task" key={task.id}>
               <span className="task__text">{task.text}</span>
-              <form className="task__priority">
-                <label htmlFor="priority" className="task__priority-text">
-                  Set Priority
-                </label>
+              <div className="task__priority">
                 <select
                   name="priority"
                   id="priority"
@@ -54,13 +51,20 @@ export default function Tasks({
                 >
                   {priorities.map(({ value, text }) => {
                     return (
-                      <option key={value} value={value}>
+                      <option key={value} value={value} className={text}>
                         {text}
                       </option>
                     );
                   })}
                 </select>
-              </form>
+                <span className="task__priority-arrow">
+                  <img
+                    src="/assets/down-arrow.svg"
+                    alt="no priority"
+                    className="side-nav__img"
+                  />
+                </span>
+              </div>
               <label htmlFor={`check-${task.id}`} className="task__checkbox">
                 <img
                   src={
