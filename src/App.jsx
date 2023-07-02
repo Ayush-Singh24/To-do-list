@@ -56,7 +56,7 @@ function App() {
     setTasks(arr);
   };
 
-  handleNav = (event) => {
+  const handleNav = (event) => {
     setShowNav(event.target.checked ? true : false);
   };
 
@@ -79,6 +79,9 @@ function App() {
         addTask={addTask}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        showNav={showNav}
+        setShowNav={setShowNav}
+        handleNav={handleNav}
       />
       <div className="content">
         <SideNav changeOption={changeOption} option={option} />

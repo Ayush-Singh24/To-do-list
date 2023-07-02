@@ -16,16 +16,22 @@ html {
 body {
   background-image: linear-gradient(to right, #d64c7f, #ee4758 50%);
   font-family: "Poppins", sans-serif;
+  // background-repeat: no-repeat;
+}
+
+.navigation {
+  display: none;
 }
 
 .container {
-  max-width: 80%;
+  max-width: 120rem;
   // background-color: grey;
   margin: 8rem auto;
   overflow: hidden;
   border-radius: 5px;
   @include respond(tab-land) {
-    max-width: 100%;
+    max-width: 100vh;
+    width: 100vw;
     margin: 0;
   }
 }
@@ -38,6 +44,13 @@ body {
 
   @include respond(tab-land) {
     height: 100vh;
+  }
+
+  @include respond(tab-port) {
+    height: 100vh;
+    width: 100vh;
+    display: block;
+    position: relative;
   }
 }
 
@@ -161,15 +174,17 @@ body {
     height: 2.5rem;
     filter: invert(1);
   }
+
+  @include respond(tab-port) {
+    position: absolute;
+    // z-index: -1;
+  }
 }
 
 .task-container {
   background-color: #edebeb;
   // flex-grow: 4;
   width: 75%;
-  @media (max-width: 1412px) {
-    width: 100%;
-  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -187,6 +202,10 @@ body {
   &::-webkit-scrollbar-thumb {
     border-radius: 1rem;
     background-color: #000000b4;
+  }
+
+  @include respond(tab-land) {
+    width: 100%;
   }
 }
 
