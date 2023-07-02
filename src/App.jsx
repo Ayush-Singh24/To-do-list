@@ -9,6 +9,7 @@ function App() {
   const [tasks, setTasks] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [option, setOption] = useState(Options.All);
+  const [showNav, setShowNav] = useState(true);
 
   const addTask = (event) => {
     event.preventDefault();
@@ -53,6 +54,10 @@ function App() {
     });
     task.status = changeEvent.target.checked ? Status.Completed : Status.Active;
     setTasks(arr);
+  };
+
+  handleNav = (event) => {
+    setShowNav(event.target.checked ? true : false);
   };
 
   useEffect(() => {
