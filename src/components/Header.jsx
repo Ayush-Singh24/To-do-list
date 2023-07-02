@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Header({
-  addTask,
-  inputValue,
-  setInputValue,
-  showNav,
-  setShowNav,
-  handleNav,
-}) {
+export default function Header({ addTask, inputValue, setInputValue }) {
   return (
     <header className="header">
       <div className="navigation">
@@ -15,8 +8,7 @@ export default function Header({
           type="checkbox"
           className="navigation__checkbox"
           id="nav-toggle"
-          checked={showNav}
-          onChange={(event) => handleNav(event)}
+          name="nav-toggle"
         />
         <label htmlFor="nav-toggle" className="navigation__button">
           <span className="navigation__icon">&nbsp;</span>
