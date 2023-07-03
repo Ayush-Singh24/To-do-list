@@ -6,7 +6,7 @@ export default function SideNav({ changeOption, option, showNav, width }) {
       className="side-nav"
       style={{
         transform: `${showNav ? "scaleY(1)" : "scaleY(0)"}`,
-        backgroundColor: `${width > 901 ? "#000000b4" : "#000000b1"}`,
+        backgroundColor: `${width > 901 ? "#000000b4" : "#000000d8"}`,
         opacity: `${showNav && "1"}`,
       }}
     >
