@@ -1,3 +1,5 @@
+@import "sass/mixin";
+
 *,
 *::after,
 *::before {
@@ -17,16 +19,18 @@ body {
   // background-repeat: no-repeat;
 }
 
-.navigation {
-  display: none;
-}
-
 .container {
-  max-width: 120rem;
+  max-width: 80%;
   // background-color: grey;
   margin: 8rem auto;
   overflow: hidden;
   border-radius: 5px;
+
+  @include respond(tab-land) {
+    max-width: 100%;
+    margin: 4rem 0;
+    height: 100vh;
+  }
 }
 
 .content {
@@ -34,6 +38,14 @@ body {
   font-size: 3rem;
   height: 40rem;
   border-top: 1px solid #ccc;
+
+  @include respond(tab-land) {
+    height: 100vh;
+  }
+
+  @include respond(tab-port) {
+    position: relative;
+  }
 }
 
 .header {
@@ -41,6 +53,78 @@ body {
   justify-content: center;
   background-color: #fff;
   padding: 2rem 2rem;
+}
+
+.navigation {
+  display: none;
+  @include respond(tab-port) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0.2rem 0.7rem rgba(black, 0.4);
+  }
+
+  &__icon {
+    position: relative;
+    &,
+    &::after,
+    &::before {
+      width: 3rem;
+      height: 3px;
+      background-color: #000000b4;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    &::before {
+      top: 0.8rem;
+    }
+
+    &::after {
+      top: -0.8rem;
+    }
+  }
+
+  &__button:hover > &__icon::after {
+    transform: translateY(-0.2rem);
+  }
+
+  &__button:hover > &__icon::before {
+    transform: translateY(0.2rem);
+  }
+
+  &__checkbox:checked + &__button > &__icon {
+    background-color: transparent;
+  }
+  &__checkbox:checked + &__button > &__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+
+  &__checkbox:checked + &__button > &__icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
 }
 
 .add-task {
@@ -94,6 +178,10 @@ body {
   &__img {
     height: 3rem;
     object-fit: contain;
+  }
+
+  @include respond(tab-port) {
+    margin: 0 auto;
   }
 }
 
@@ -157,6 +245,16 @@ body {
     height: 2.5rem;
     filter: invert(1);
   }
+
+  @include respond(tab-port) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: all 0.4s;
+    transform-origin: top;
+    opacity: 0;
+  }
 }
 
 .task-container {
@@ -180,6 +278,10 @@ body {
   &::-webkit-scrollbar-thumb {
     border-radius: 1rem;
     background-color: #000000b4;
+  }
+
+  @include respond(tab-port) {
+    width: 100%;
   }
 }
 

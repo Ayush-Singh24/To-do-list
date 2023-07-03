@@ -4,12 +4,14 @@ import Tasks from "./components/Tasks";
 import { useEffect, useState } from "react";
 import { Options, Priority, Status } from "./utils/constants";
 import { nanoid } from "nanoid";
+import useWindowsDimensions from "./utils/useWindowsDimensions";
 
 function App() {
   const [tasks, setTasks] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [option, setOption] = useState(Options.All);
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(false);
+  const { width, height } = useWindowsDimensions();
 
   const addTask = (event) => {
     event.preventDefault();
@@ -45,6 +47,9 @@ function App() {
 
   const changeOption = (option) => {
     setOption(option);
+    if (width < 901) {
+      setShowNav(false);
+    }
   };
 
   const handleStatus = (changeEvent, id) => {
@@ -57,7 +62,7 @@ function App() {
   };
 
   const handleNav = (event) => {
-    setShowNav(event.taget.checked ? true : false);
+    setShowNav(event.target.checked);
   };
 
   useEffect(() => {
@@ -73,15 +78,31 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (width < 901) {
+      setShowNav(false);
+    } else {
+      setShowNav(true);
+    }
+  }, [width]);
+
   return (
     <div className="container">
       <Header
         addTask={addTask}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        showNav={showNav}
+        setShowNav={setShowNav}
+        handleNav={handleNav}
       />
       <div className="content">
-        <SideNav changeOption={changeOption} option={option} />
+        <SideNav
+          changeOption={changeOption}
+          option={option}
+          showNav={showNav}
+          width={width}
+        />
 
         <Tasks
           tasks={tasks}

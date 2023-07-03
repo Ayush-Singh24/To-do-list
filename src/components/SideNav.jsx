@@ -1,8 +1,15 @@
 import { Options } from "../utils/constants";
 
-export default function SideNav({ changeOption, option }) {
+export default function SideNav({ changeOption, option, showNav, width }) {
   return (
-    <nav className="side-nav">
+    <nav
+      className="side-nav"
+      style={{
+        transform: `${showNav ? "scaleY(1)" : "scaleY(0)"}`,
+        backgroundColor: `${width > 901 ? "#000000b4" : "#000000b1"}`,
+        opacity: `${showNav && "1"}`,
+      }}
+    >
       <div
         className={option === Options.All ? "active" : ""}
         onClick={() => changeOption(Options.All)}
