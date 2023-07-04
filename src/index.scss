@@ -311,6 +311,7 @@ body {
   align-items: center;
   width: 100%;
   transition: all 0.5s;
+  flex-wrap: wrap;
 
   &:hover {
     background-color: #c6bfc167;
